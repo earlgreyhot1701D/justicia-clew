@@ -164,7 +164,7 @@ def _detect_source_label(content: str) -> str:
 def _get_source_url(county_prefix: str) -> str:
     """Return the primary source URL for a county's jury information."""
     urls = {
-        "SB": "https://www.santabarbara.courts.ca.gov",
+        "SB": "https://www.santabarbara.courts.ca.gov/divisions/jury-services",
         "LA": "https://www.lacourt.ca.gov/pages/lp/juror-services",
         "SF": "https://sf.courts.ca.gov/divisions/jury-services",
         "FRESNO": "https://www.fresno.courts.ca.gov/divisions/jury-service",
