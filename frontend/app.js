@@ -51,7 +51,10 @@ const screens = ['landing', 'loading', 'questionScreen', 'answer'];
 // --- Screen management ---
 function show(id) {
   screens.forEach(s => $(s).hidden = s !== id);
-  const target = $(id).querySelector('h1,h2,button,input,select');
+  const panel = $(id);
+  // Prefer the screen's own heading so screen readers announce it first;
+  // headings carry tabindex="-1" in index.html to make this possible.
+  const target = panel.querySelector('h1,h2') || panel.querySelector('button,input,select');
   if (target) target.focus();
 }
 

@@ -1,18 +1,28 @@
-"""STUB: Rate limiting interface.
+"""Rate limiting for /api/ask, the only route that calls the metered DO agent.
 
-Implementation note: When filled in (Block 3 if time allows), use a simple
-in-memory sliding window per IP. FastAPI dependency injection pattern:
-    async def check_rate_limit(request: Request) -> None:
-        # raise HTTPException(429) if over limit
-
-For production: replace with Redis-backed limiter or DO App Platform's
-built-in rate limiting if available.
+Simple in-memory sliding window per client IP. Single-process, resets on
+restart, not distributed. That's an intentional tradeoff for a short-lived
+hackathon demo, not long-term production, a Redis-backed limiter would be
+the real fix if this app lived past submission day.
 """
 
+import time
+from collections import defaultdict
 
-async def check_rate_limit(request) -> None:
-    """STUB: Rate limit check. Currently a no-op pass-through."""
-    # TODO: Implement sliding window rate limiting per IP
-    # Suggested limits: 30 requests/minute per IP for /api/ask,
-    # 60 requests/minute for /api/chips
-    pass
+_WINDOW_SECONDS = 60
+_MAX_REQUESTS = 10
+_hits = defaultdict(list)
+
+
+def check_rate_limit(client_id: str) -> bool:
+    """Return True if this client is within the allowed rate, False if it
+    should be blocked. Caller is responsible for raising the HTTP error."""
+    now = time.time()
+    window_start = now - _WINDOW_SECONDS
+    hits = _hits[client_id]
+    while hits and hits[0] < window_start:
+        hits.pop(0)
+    if len(hits) >= _MAX_REQUESTS:
+        return False
+    hits.append(now)
+    return True

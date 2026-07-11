@@ -99,7 +99,7 @@ POST /api/ask
   -> refusal shape: { refusal: true, message, phone }
 ```
 
-Every route: try/catch, meaningful JSON error body, never a blank screen on failure. Rate limiting is a STUB interface in `rate_limit.py` (comment + function signature) — fill in only if Block 3 has slack.
+Every route: try/catch, meaningful JSON error body, never a blank screen on failure. Rate limiting in `rate_limit.py` moved from STUB to real (2026-07-11, after adversarial QA flagged it as the one real exposure before public exposure): a simple in-memory sliding window, 10 requests/minute per client IP, applied only to `/api/ask` since that's the route that calls the metered DO agent. Single-process and resets on restart, an intentional tradeoff for a hackathon-lifespan demo, not a claim of production-grade rate limiting. A Redis-backed limiter would be the real fix if this app lived past submission day.
 
 ---
 
