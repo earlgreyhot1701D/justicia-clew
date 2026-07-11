@@ -29,3 +29,4 @@ class RefusalResponse(BaseModel):
     refusal: bool = True
     message: str
     phone: str
+    hours: str = ""

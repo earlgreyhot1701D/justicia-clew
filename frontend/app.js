@@ -55,6 +55,22 @@ function show(id) {
   if (target) target.focus();
 }
 
+// --- Reset the question input back to empty, disabled-ask state ---
+function resetQuestionInput() {
+  $('question').value = '';
+  $('ask').disabled = true;
+}
+
+// --- Render text as separate paragraphs instead of one dense block.
+// Still textContent only per node, never innerHTML. ---
+function renderParagraphs(container, text) {
+  String(text).split('\n').map(s => s.trim()).filter(Boolean).forEach(line => {
+    const p = document.createElement('p');
+    p.textContent = line;
+    container.appendChild(p);
+  });
+}
+
 // --- Language toggle ---
 function translate(next) {
   lang = next;
@@ -126,15 +142,20 @@ async function openAnswer(question) {
       const state = document.createElement('span');
       state.className = 'state';
       state.textContent = lang === 'es' ? 'Se requiere decisión del tribunal' : 'Court decision required';
-      const p = document.createElement('p');
-      p.textContent = data.message;
-      box.append(state, p);
+      box.appendChild(state);
+      renderParagraphs(box, data.message);
       if (data.phone) {
         const call = document.createElement('a');
         call.className = 'call';
         call.href = 'tel:' + data.phone.replace(/[^+\d]/g, '');
         call.textContent = (lang === 'es' ? 'Llamar a Servicios de Jurado: ' : 'Call Jury Services: ') + data.phone;
         box.appendChild(call);
+      }
+      if (data.hours) {
+        const hours = document.createElement('p');
+        hours.className = 'hours';
+        hours.textContent = data.hours;
+        box.appendChild(hours);
       }
       host.appendChild(box);
     } else {
@@ -144,9 +165,8 @@ async function openAnswer(question) {
       const ansLabel = document.createElement('span');
       ansLabel.className = 'label';
       ansLabel.textContent = lang === 'es' ? 'Lo que necesita saber' : 'What you need to know';
-      const ansP = document.createElement('p');
-      ansP.textContent = data.answer;
-      answerBlock.append(ansLabel, ansP);
+      answerBlock.appendChild(ansLabel);
+      renderParagraphs(answerBlock, data.answer);
       host.appendChild(answerBlock);
 
       // Source quote
@@ -203,6 +223,14 @@ async function openAnswer(question) {
     call.href = 'tel:+18058824530';
     call.textContent = lang === 'es' ? 'Llamar a Servicios de Jurado: (805) 882-4530' : 'Call Jury Services: (805) 882-4530';
     errBox.appendChild(call);
+
+    const hours = document.createElement('p');
+    hours.className = 'hours';
+    hours.textContent = lang === 'es'
+      ? 'Lunes a viernes, 8am-3pm, excepto días feriados. Línea automática disponible en cualquier momento: 877-544-5094.'
+      : 'Mon-Fri, 8am-3pm, excluding holidays. Automated info line answers anytime: 877-544-5094.';
+    errBox.appendChild(hours);
+
     host.appendChild(errBox);
 
     $('live').textContent = lang === 'es' ? 'Error al cargar respuesta.' : 'Error loading answer.';
@@ -257,9 +285,18 @@ $('continue').addEventListener('click', async () => {
   renderChips(currentCounty);
   loadThen('questionScreen');
 });
-$('homeBtn').addEventListener('click', () => show('landing'));
-document.querySelectorAll('.toLanding').forEach(b => b.addEventListener('click', () => show('landing')));
-$('answerBack').addEventListener('click', () => show('questionScreen'));
+$('homeBtn').addEventListener('click', () => {
+  resetQuestionInput();
+  show('landing');
+});
+document.querySelectorAll('.toLanding').forEach(b => b.addEventListener('click', () => {
+  resetQuestionInput();
+  show('landing');
+}));
+$('answerBack').addEventListener('click', () => {
+  resetQuestionInput();
+  show('questionScreen');
+});
 document.querySelectorAll('.sourceInfo').forEach(b => b.addEventListener('click', () => {
   const p = b.nextElementSibling;
   p.hidden = !p.hidden;

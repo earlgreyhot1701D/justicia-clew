@@ -58,10 +58,6 @@ def _parse_agent_response(data: dict, county_prefix: str) -> dict:
         "i cannot advise",
         "i can't predict",
         "i cannot predict",
-        "i can't give",
-        "i cannot give",
-        "i can't tell you",
-        "i cannot tell you",
         "i don't have",
         "i do not have",
         "not in the information",
@@ -70,22 +66,24 @@ def _parse_agent_response(data: dict, county_prefix: str) -> dict:
         "not available in",
         "please contact",
         "call the jury",
-        "contact the court",
-        "call the court",
-        "call south county",
-        "call north county",
+        "i can't give",
+        "i cannot give",
+        "i can't tell you",
+        "i cannot tell you",
     ]
 
     content_lower = content.lower()
     is_refusal = any(signal in content_lower for signal in refusal_signals)
 
     if is_refusal:
-        # Map county to phone number (real numbers for demo counties)
+        # Map county to phone number and hours (real numbers for demo counties)
         phone = _get_jury_phone(county_prefix)
+        hours = _get_jury_hours(county_prefix)
         return {
             "refusal": True,
             "message": content,
             "phone": phone,
+            "hours": hours,
         }
 
     # Non-refusal: structured answer
@@ -102,13 +100,22 @@ def _parse_agent_response(data: dict, county_prefix: str) -> dict:
 def _get_jury_phone(county_prefix: str) -> str:
     """Return the real jury services phone number for a county."""
     phones = {
-        "SB": "(805) 882-4530",  # South County, verified
+        "SB": "(805) 882-4530",
         "LA": "NOT_VERIFIED_STUB",
         "SF": "NOT_VERIFIED_STUB",
         "FRESNO": "NOT_VERIFIED_STUB",
         "INYO": "NOT_VERIFIED_STUB",
     }
     return phones.get(county_prefix, "Check your summons for the jury office phone number.")
+
+
+def _get_jury_hours(county_prefix: str) -> str:
+    """Return office hours to pair with the jury phone number, so a refusal
+    never sends someone to call a line that won't answer right now."""
+    hours = {
+        "SB": "Mon-Fri, 8am-3pm, excluding holidays. Automated info line answers anytime: 877-544-5094.",
+    }
+    return hours.get(county_prefix, "Check your summons for office hours.")
 
 
 def _extract_quote(content: str) -> str:
