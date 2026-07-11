@@ -1,5 +1,7 @@
 # Justicia Clew
 
+![Justicia Clew — plain-language jury duty answers](assets/justicia_clew_repo_hero.png)
+
 Plain-language jury duty answers, in the court system's own words. Built for California, all 58 counties useful on day one via the statewide layer, deep coverage for demo counties (Santa Barbara, Los Angeles, San Francisco, Fresno, Inyo).
 
 Citizen-facing sibling of Themis Lex. Themis Lex serves the people who run the court, Justicia Clew serves the people the court summons.
