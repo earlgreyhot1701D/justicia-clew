@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Block Gate",
+  "description": "Before starting the next task, review the code changed in the task that just finished against four rules: (1) Scope adherence — nothing outside this task changed, no NEVER-list item got built, STUB items are interface-plus-comment only. (2) Security — textContent only, never innerHTML, no eval, API keys server-side only, try/catch on every fetch, URL field validated against court-domain allowlist. (3) Accessibility — semantic HTML, labeled inputs, 44px+ touch targets, WCAG AA contrast, keyboard reachable. (4) Error states — no failure path renders a blank screen. A STUB gap is expected and should PASS. Report PASS or FAIL per category with file and line evidence. If any category FAILs, do not proceed to the next task until addressed.",
+  "version": "1",
+  "when": {
+    "type": "preTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before starting the next task, review the code changed in the task that just finished against these rules: (1) Scope adherence — nothing outside this task changed, no NEVER-list item got built (no accounts, no history, no legal-advice or excusal logic, no native app, no scraping outside official court/Judicial Council domains, no unlabeled machine translation), and any STUB item is interface-plus-comment only, not partially built. (2) Security — textContent only, never innerHTML, no eval, all API keys and DO tokens stay in server-side env vars, try/catch on every fetch, input validation on the URL field against the court-domain allowlist. (3) Accessibility — semantic HTML, labeled inputs, 44px+ touch targets, WCAG AA contrast, keyboard reachable. (4) Error states — no failure path renders a blank screen. A STUB gap (a feature marked STUB and left as interface + comment) is expected and should PASS, it is not a failure. Report PASS or FAIL per category with file and line evidence. If any category genuinely FAILs, say so clearly and do not proceed to the next task until it's addressed. If all four PASS, say so and continue."
+  }
+}

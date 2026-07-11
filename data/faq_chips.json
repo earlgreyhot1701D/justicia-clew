@@ -1,0 +1,12 @@
+[
+  {"id": "chip-1", "question": "Do I still have to go tomorrow?", "tag": "statewide", "county": null},
+  {"id": "chip-2", "question": "What happens if I don't show up?", "tag": "statewide", "county": null},
+  {"id": "chip-3", "question": "Can my employer fire me for jury duty?", "tag": "statewide", "county": null},
+  {"id": "chip-4", "question": "How much do I get paid for jury service?", "tag": "statewide", "county": null},
+  {"id": "chip-5", "question": "How do I postpone my jury duty?", "tag": "statewide", "county": null},
+  {"id": "chip-6", "question": "Where do I park at the courthouse?", "tag": "county", "county": "sb"},
+  {"id": "chip-7", "question": "What time do I need to report?", "tag": "county", "county": "sb"},
+  {"id": "chip-8", "question": "How do I check if I still need to report?", "tag": "county", "county": "sb"},
+  {"id": "chip-9", "question": "Can I bring my phone to the courthouse?", "tag": "statewide", "county": null},
+  {"id": "chip-10", "question": "What if I have a medical condition?", "tag": "statewide", "county": null}
+]

@@ -1,0 +1,27 @@
+{
+  "sb": {
+    "name": "Santa Barbara",
+    "domains": ["santabarbara.courts.ca.gov"],
+    "agent_env_prefix": "SB"
+  },
+  "la": {
+    "name": "Los Angeles",
+    "domains": ["lacourt.ca.gov", "lacourt.org"],
+    "agent_env_prefix": "LA"
+  },
+  "sf": {
+    "name": "San Francisco",
+    "domains": ["sf.courts.ca.gov"],
+    "agent_env_prefix": "SF"
+  },
+  "fresno": {
+    "name": "Fresno",
+    "domains": ["fresno.courts.ca.gov"],
+    "agent_env_prefix": "FRESNO"
+  },
+  "inyo": {
+    "name": "Inyo",
+    "domains": ["inyo.courts.ca.gov"],
+    "agent_env_prefix": "INYO"
+  }
+}

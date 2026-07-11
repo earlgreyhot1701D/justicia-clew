@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Pre-Submission Lock",
+  "description": "Manual check of the six never-cut items before Devpost submission: refusal behavior with real phone number, source attribution, trust banner + not-legal-advice footer, error states (no blank screens), accessibility baseline, independence disclaimer.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check the current state of the whole app, not just the latest change, against these six items only. They do not get cut no matter what else is stubbed: (1) refusal behavior returns the real county phone number for at least one refusal case. (2) Every non-refusal answer shows the exact source quote and labels itself county-site vs statewide Judicial Council, never blended silently. (3) The trust banner and \"not legal advice\" footer text are present, in both languages if the language toggle is live. (4) Every fetch has a try/catch with a real, meaningful error message on failure, never a blank screen. (5) Accessibility baseline holds: semantic HTML, labeled inputs, 44px+ touch targets, contrast, full keyboard navigation. (6) The independence disclaimer text is in the footer and in the README. Report PASS or FAIL per item with file evidence. Be strict here, this is the last check before submission."
+  }
+}
