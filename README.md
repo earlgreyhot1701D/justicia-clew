@@ -26,9 +26,13 @@ Not legal advice. Not affiliated with or endorsed by any court. Not a prediction
 
 This is a personal project, built on publicly available information. It is not affiliated with, endorsed by, or reviewed by any California court, the Judicial Council, or any county jury services office.
 
-## Honest limitations
+## Limitations
 
-*(fill in during Block 6 — demo prep. Keep this section truthful, not marketing copy. Known candidates: only 5 of 58 counties have live data at demo time, remaining 52 use an identical but not-yet-run ingestion pipeline; refresh is manual, not scheduled; Spanish depth depends on Spike 4 findings.)*
+- Only Santa Barbara has a live knowledge base at demo time. The remaining 57 counties are served by the statewide Judicial Council layer for general questions, but county-specific answers (parking, local phone numbers, courthouse details) require per-county ingestion that hasn't been run yet.
+- Knowledge base refresh is manual. A "last checked" timestamp is displayed per answer so users know the age of the source data.
+- Spanish translations are not yet connected to grounded source content. The UI toggle is disabled until real Spanish-language court pages can be ingested.
+- The refusal heuristic is keyword-based. Edge cases exist where the agent's phrasing may not be caught, resulting in a soft refusal rendered as a normal answer card.
+- Rate limiting is in-memory and resets on server restart. Not suitable for sustained production traffic without a persistent backing store.
 
 ## Status
 
