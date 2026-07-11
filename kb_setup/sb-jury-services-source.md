@@ -46,7 +46,7 @@ California Government Code section 12945.8 states, in part, that an employer sha
 1. Discharge or in any way discriminate against an employee for taking time off to serve as required by law on an inquest jury or trial jury, if the employee gave the employer reasonable notice beforehand that they were required to serve.
 2. Discharge or in any way discriminate or retaliate against an employee, including a victim, for taking time off to appear in court to comply with a subpoena or other court order as a witness in a judicial proceeding.
 
-This is the legal basis for the common "can my employer fire me for jury duty" question. The court's page does not go further into how to file a complaint if this happens, for that a juror would need to contact the Labor Commissioner or an employment attorney, this page only confirms the underlying legal protection.
+This is the legal basis for the common "is my job protected while I'm on jury duty" question. The court's page does not go further into how to file a complaint if this happens, for that a juror would need to contact the Labor Commissioner or an employment attorney, this page only confirms the underlying legal protection.
 
 ## Juror Information (general)
 
