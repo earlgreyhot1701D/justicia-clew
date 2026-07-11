@@ -16,6 +16,8 @@ Not legal advice. Not affiliated with or endorsed by any court. Not a prediction
 
 ## How it works
 
+![Architecture diagram](assets/architecture.png)
+
 - Mobile-first web app, FastAPI backend, DigitalOcean Gradient AI (Knowledge Bases + Agents) as the AI layer.
 - Answers are grounded only in ingested official content from each county's court site and the California Courts self-help center. Nothing else.
 - Every answer names its source: your court's website, or the statewide Judicial Council site. Never blended silently.
