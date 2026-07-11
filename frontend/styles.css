@@ -20,3 +20,5 @@ h1{position:relative;z-index:1;max-width:320px;margin:0 0 15px;font:italic 50px/
 :focus-visible{outline:3px solid var(--deep);outline-offset:3px}.top :focus-visible{outline-color:var(--ochre)}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}@media(max-width:350px){h1{font-size:43px}.panel h2{font-size:30px}}@media(min-width:560px){body{padding:28px 0}.app{border:2px solid var(--cream);border-radius:18px}}
 
 .hours{margin:8px 0 0;color:var(--muted);font-size:13px}
+
+.answer-block p+p,.refusal p+p,.unavailable p+p{margin-top:10px}
